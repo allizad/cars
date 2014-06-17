@@ -1,4 +1,8 @@
 class Car
+
+	#class variable of all instances of Cars.
+	@@total_car_count = 0
+
 	def to_s()
 		"I'm a car! I've driven #{@distance} and have #{@fuel} gallons gas left"
 	end
