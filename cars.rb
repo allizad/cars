@@ -3,6 +3,11 @@ class Car
 	#class variable of all instances of Cars.
 	@@total_car_count = 0
 
+	#can only be called on the class, not the instance.
+	def self.total_car_count
+		@@total_car_count
+	end
+
 	def to_s()
 		"I'm a car! I've driven #{@distance} and have #{@fuel} gallons gas left"
 	end
@@ -10,6 +15,7 @@ class Car
 	def initialize()
 		@fuel = 10
 		@distance = 0
+		@@total_car_count += 1
 	end
 
 	def drive(miles)
@@ -41,3 +47,9 @@ car_a.drive(232)
 car_b.drive(117)
 puts car_a
 puts car_b
+
+puts Car.total_car_count
+c1 = Car.new
+puts Car.total_car_count
+c2 = Car.new
+puts Car.total_car_count
