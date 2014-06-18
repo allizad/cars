@@ -28,20 +28,36 @@ class Car
 		"I'm a car! I've driven #{@distance} and have #{@fuel} gallons gas left"
 	end
 
+	#roof status for convertibles feature
+	attr_accessor :roof_status
+
 	#initialize new car with default color of blue
-	def initialize(color="blue")
+	def initialize(color="blue", convertible="false")
 		@color = color
 		@fuel = 10
 		@distance = 0
 		@@total_car_count += 1
+		@convertible = convertible
+
+		#roof status is closed when initialized
+		@roof_status = "closed" if @convertible
 
 		#add car color to the cars_per_color hash, 
 		#where key = color.to_sym, and value = count of car instances with that color
-		if @@cars_per_color.has_key?(@color) == true
-			@@cars_per_color[@color] += 1
+		if @@cars_per_color.has_key?(color) == true
+			@@cars_per_color[color] += 1
 		else
-			@@cars_per_color[@color] = 1
+			@@cars_per_color[color] = 1
 		end
+	end
+
+	#roof status methods for close and open
+	def top_down
+		@roof_status = "open" if @convertible
+	end
+
+	def close_top
+		@roof_status = "closed" if @convertible
 	end
 
 	#write new color for instance, which also updates class hash of car colors:
