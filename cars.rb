@@ -94,30 +94,24 @@ class Car
 	end
 end
 
-car_a = Car.new("white")
-car_b = Car.new("red")
-puts car_a
-puts car_b
-car_a.drive(10)
-puts car_a
-puts car_b
-car_a.drive(232)
-car_b.drive(117)
-puts car_a
-puts car_b
+class ConvertibleCar < Car
 
-car_b.color = "black"
-Car.cars_per_color("black")
+	attr_accessor :roof_status
 
-puts Car.total_car_count
-c1 = Car.new("black")
-puts Car.total_car_count
-c2 = Car.new("red")
-puts Car.total_car_count
+	def initialize(color="red", convertible="true")
+		super(color)
+		@convertible = convertible
+		@roof_status = "closed"
+	end
 
-c3 = Car.new(Car.most_popular_color)
+	#do we really need top down and up methods??
 
-puts Car.most_popular_color
+	def top_down
+		@roof_status = "open"
+	end
 
-# best_color = Car.most_popular_color
-# Car.new(best_color)
+	def close_top
+		@roof_status = "closed"
+	end
+
+end
